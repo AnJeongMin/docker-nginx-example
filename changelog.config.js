@@ -1,12 +1,11 @@
 module.exports = {
-  disableEmoji: true, // 이모지 사용 여부
-  format: " {emoji}{type}: {scope} - {subject}", // 커밋 메세지 포맷
-  list: ["feat", "refactor", "chore", "fix", "style", "test", "docs"], // type list
+  disableEmoji: true,
+  format: "{emoji}{type}: {scope} - {subject}",
+  list: ["feat", "refactor", "chore", "fix", "style", "test", "docs"],
   maxMessageLength: 64,
   minMessageLength: 3,
-  // question 목록에 대한 것들을 선택 및 작성할 수 있다.
-  questions: ["type", "scope", "subject", "body"], // 'breaking', 'issues', 'lerna' 등
-  scopes: ["FE", "BE", "COMMON"], // format에 추가 됨
+  questions: ["type", "scope", "subject", "body"],
+  scopes: ["FE", "BE", "COMMON"],
   types: {
     chore: {
       description: "빌드 업무 수정, 패키지 매니저 수정, 기타 잡무",
