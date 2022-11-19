@@ -2,35 +2,24 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 origin_url="https://github.com/AnJeongMin/docker-nginx-example.git" # 금지할 repo url
-branch_main="refs/heads/main" # main branch
-branch_dev="refs/heads/dev" # dev branch
 
 remote="$1"
 url="$2"
 
-echo $1
-echo $2
-
-if [ "$url" != "$FORBIDDEN_HTTPS_URL" ]
+if [ "$url" != "$origin_url" ]
 then
     exit 0 # 실제 origin url이 아니면 그냥 push 됨
 fi
 
-:<<"END"
-아래는 예시
-local_ref = refs/heads/main
-local_sha1 = 68a07ee4f6af8271dc40caae6cc23f283122ed11
-remote_ref = refs/heads/main
-remote_sha1 = efd4d512f34b11e3cf5c12433bbedd4b1532716f
-END
+#current_branch=$(git rev-parse --abbrev-ref HEAD)
+current_bracnh="test"
 
-if read local_ref local_sha remote_ref remote_sha
+if [ "$current_branch" == "main" -o "$current_branch" == "dev" ] # -a -> or
 then
-    if [ "$remote_ref" == "$branch_main" -o "$remote_ref" == "$branch_main" == "$branch_dev" ]
-    then
-        echo "DO NOT PUSH IN DEV OR MAIN BRANCH"
-        exit 1 # 금지된 ref 로 push 를 실행하면 에러
-    fi
+    echo "do not push in dev or main branch"
+    exit 1
 fi
+
+cd server && yarn lint && yarn test
 
 exit 0

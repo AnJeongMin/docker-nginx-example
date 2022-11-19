@@ -1,7 +1,4 @@
 {
-  "dependencies": {
-    "husky": "^8.0.2"
-  },
   "devDependencies": {
     "husky": "^8.0.0"
   },
